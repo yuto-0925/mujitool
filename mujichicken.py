@@ -9,6 +9,8 @@ import datetime
 import bs4
 import random
 import chromedriver_binary
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+import os
 
 #Macの場合、次を追加
 
@@ -29,11 +31,15 @@ likedMax = 200
 options = Options()
 options.add_argument('--headless')
 options.add_argument('--disable-gpu')
+chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+opts = ChromeOptions()
+opts.binary_location = chrome_bin
+driver = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
+# webdriver.Chrome(DRIVER)
 
 #ブラウザに接続
 #Windowsの場合：chromedriver.exeの格納先を指定する
 #例　r"C:\Users\username\Python\chromedriver.exe"
-driver = webdriver.Chrome('chromedriver', chrome_options=options)
 driver.implicitly_wait(10)
 time.sleep(5)
 #Macの場合：次の記載とする
