@@ -28,11 +28,10 @@ print(tagName)
 #いいね数を設定
 likedMax = 200
 
-options = Options()
-options.add_argument('--headless')
-options.add_argument('--disable-gpu')
-chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
 opts = ChromeOptions()
+opts.add_argument('--headless')
+opts.add_argument('--disable-gpu')
+chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM')
 opts.binary_location = chrome_bin
 driver = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
 # webdriver.Chrome(DRIVER)
