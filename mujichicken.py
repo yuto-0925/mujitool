@@ -26,10 +26,12 @@ print(tagName)
 #いいね数を設定
 likedMax = 200
 
+options = Options()
+
 #ブラウザに接続
 #Windowsの場合：chromedriver.exeの格納先を指定する
 #例　r"C:\Users\username\Python\chromedriver.exe"
-driver = webdriver.Chrome()
+driver = webdriver.Chrome('chromedriver', chrome_options=options)
 driver.implicitly_wait(10)
 time.sleep(5)
 #Macの場合：次の記載とする
