@@ -43,10 +43,12 @@ driver.implicitly_wait(10)
 time.sleep(1)
 
 #メアドと、パスワードを入力
-driver.find_element_by_name('username').send_keys(username)
-time.sleep(2)
-driver.find_element_by_name('password').send_keys(password)
-time.sleep(2)
+user = driver.find_element_by_xpath('//input[@name="username"]')
+user.send_key(username)
+time.sleep(1)
+passwords = driver.find_element_by_xpath('//input[@name="password"]')
+passwords.send_key(password)
+time.sleep(1)
 
 #ログインボタンを押す
 driver.find_element_by_xpath('//*[@id="loginForm"]/div/div[3]').click()
