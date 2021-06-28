@@ -1,5 +1,5 @@
 selenium==3.141.0
-chromedriver-binary
+chromedriver-binary==91.0.4472.114
 lxml==4.6.3
 bs4==0.0.1
 seleniumbase
