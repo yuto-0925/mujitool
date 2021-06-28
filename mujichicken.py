@@ -27,6 +27,8 @@ print(tagName)
 likedMax = 200
 
 options = Options()
+options.add_argument('--headless')
+options.add_argument('--disable-gpu')
 
 #ブラウザに接続
 #Windowsの場合：chromedriver.exeの格納先を指定する
