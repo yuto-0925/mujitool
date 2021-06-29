@@ -31,6 +31,7 @@ likedMax = 200
 chrome_options = Options()
 chrome_options.add_argument('--headless')
 driver = webdriver.Chrome(options=chrome_options)
+driver.set_window_size('1200', '1000')
 # webdriver.Chrome(DRIVER)
 
 #ブラウザに接続
