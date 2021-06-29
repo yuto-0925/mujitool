@@ -28,12 +28,9 @@ print(tagName)
 #いいね数を設定
 likedMax = 200
 
-opts = ChromeOptions()
-opts.add_argument('--headless')
-opts.add_argument('--disable-gpu')
-chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM')
-opts.binary_location = chrome_bin
-driver = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+driver = webdriver.Chrome(options=chrome_options)
 # webdriver.Chrome(DRIVER)
 
 #ブラウザに接続
@@ -50,9 +47,9 @@ driver.implicitly_wait(10)
 time.sleep(1)
 
 #メアドと、パスワードを入力
-driver.find_element_by_xpath('//input[@name="username"]').send_key(username)
+driver.find_element_by_xpath('//input[@type="username"]').send_key(username)
 time.sleep(1)
-driver.find_element_by_xpath('//input[@name="password"]').send_key(password)
+driver.find_element_by_xpath('//input[@type="password"]').send_key(password)
 time.sleep(1)
 
 #ログインボタンを押す
