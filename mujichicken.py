@@ -11,6 +11,7 @@ import random
 import chromedriver_binary
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 import os
+from bottle import route, run
 
 #Macの場合、次を追加
 
@@ -50,10 +51,8 @@ driver.implicitly_wait(10)
 time.sleep(1)
 
 #メアドと、パスワードを入力
-driver.switch_to.frame('gsft_main')
 driver.find_element_by_xpath('//input[@name="username"]').send_key(username)
 time.sleep(1)
-driver.switch_to.frame('gsft_main')
 driver.find_element_by_xpath('//input[@name="password"]').send_key(password)
 time.sleep(1)
 
