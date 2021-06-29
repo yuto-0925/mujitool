@@ -50,11 +50,11 @@ driver.implicitly_wait(10)
 time.sleep(1)
 
 #メアドと、パスワードを入力
-user = driver.find_element_by_xpath('//input[@name="username"]')
-user.send_key(username)
+driver.switch_to.frame('gsft_main')
+driver.find_element_by_xpath('//input[@name="username"]').send_key(username)
 time.sleep(1)
-passwords = driver.find_element_by_xpath('//input[@name="password"]')
-passwords.send_key(password)
+driver.switch_to.frame('gsft_main')
+driver.find_element_by_xpath('//input[@name="password"]').send_key(password)
 time.sleep(1)
 
 #ログインボタンを押す
