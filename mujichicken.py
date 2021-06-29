@@ -46,9 +46,11 @@ driver.get("https://www.instagram.com/accounts/login/")
 driver.implicitly_wait(10)
 time.sleep(1)
 #メアドと、パスワードを入力
-driver.find_element_by_xpath("//*[@id='loginForm']/div/div[1]/div/label/input").send_key(username)
+iframe = driver.find_element_by_xpath("//*[@id='loginForm']/div/div[1]/div/label/input").send_key(username)
+driver.switch_to.frame(iframe)
 time.sleep(1)
-driver.find_element_by_xpath("//*[@id='loginForm']/div/div[2]/div/label/input").send_key(password)
+iframe = driver.find_element_by_xpath("//*[@id='loginForm']/div/div[2]/div/label/input").send_key(password)
+driver.switch_to.frame(iframe)
 time.sleep(1)
 
 #ログインボタンを押す
