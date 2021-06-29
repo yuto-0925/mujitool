@@ -28,15 +28,21 @@ print(tagName)
 #いいね数を設定
 likedMax = 200
 
-options = Options()
-options.add_argument ("headless")
-options.add_argument ("disable-gpu")
-allesFertig = True
-    
+opts = ChromeOptions()
+opts.add_argument('--headless')
+opts.add_argument('--disable-gpu')
+chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM')
+opts.binary_location = chrome_bin
+driver = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
+# webdriver.Chrome(DRIVER)
+
 #ブラウザに接続
-driver = webdriver.Chrome(options =  options, executable_path ='/usr/lib/chromium-browser/chromedriver')
+#Windowsの場合：chromedriver.exeの格納先を指定する
+#例　r"C:\Users\username\Python\chromedriver.exe"
 driver.implicitly_wait(10)
 time.sleep(5)
+#Macの場合：次の記載とする
+ #driver = webdriver.Chrome()
 
 #インスタのURLにアクセス
 driver.get("https://www.instagram.com/accounts/login/")
