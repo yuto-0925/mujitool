@@ -11,7 +11,6 @@ import random
 import chromedriver_binary
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 import os
-from bottle import route, run
 
 #Macの場合、次を追加
 
