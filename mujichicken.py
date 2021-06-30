@@ -60,7 +60,9 @@ usernames = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_S
 usernames.clear()
 usernames.send_keys(username)
 time.sleep(1)
-driver.find_element_by_xpath("//*[@id='loginForm']/div/div[2]/div/label/input").send_key(password)
+passwords = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[name='password']")))
+passwords.clear()
+passwords.send_keys(password)
 time.sleep(1)
 
 #ログインボタンを押す
