@@ -14,6 +14,7 @@ import os
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import TimeoutException
 
 #Macの場合、次を追加
 
@@ -38,6 +39,9 @@ driver = webdriver.Chrome(options=chrome_options)
 driver.set_window_size('1200', '1000')
 # webdriver.Chrome(DRIVER)
 
+wait = WebDriverWait(driver, 20)
+wait.until(EC.presence_of_all_elements_located)
+
 #ブラウザに接続
 #Windowsの場合：chromedriver.exeの格納先を指定する
 #例　r"C:\Users\username\Python\chromedriver.exe"
@@ -50,6 +54,7 @@ time.sleep(5)
 driver.get("https://www.instagram.com/accounts/login/")
 driver.implicitly_wait(10)
 time.sleep(1)
+
 #メアドと、パスワードを入力
 usernames = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[name='username']")))
 usernames.clear()
