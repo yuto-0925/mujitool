@@ -11,6 +11,9 @@ import random
 import chromedriver_binary
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 import os
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 
 #Macの場合、次を追加
 
@@ -47,7 +50,9 @@ driver.get("https://www.instagram.com/accounts/login/")
 driver.implicitly_wait(10)
 time.sleep(1)
 #メアドと、パスワードを入力
-driver.find_element_by_xpath("//*[@id='loginForm']/div/div[1]/div/label/input").send_key(username)
+usernames = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[name='username']")))
+usernames.clear()
+usernames.send_keys(username)
 time.sleep(1)
 driver.find_element_by_xpath("//*[@id='loginForm']/div/div[2]/div/label/input").send_key(password)
 time.sleep(1)
