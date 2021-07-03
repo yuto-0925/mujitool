@@ -47,7 +47,7 @@ time.sleep(5)
 driver.get("https://www.instagram.com/accounts/login/")
 print(driver.page_source)
 driver.implicitly_wait(10)
-time.sleep(1)
+time.sleep(20)
 
 #メアドと、パスワードを入力
 driver.find_element_by_css_selector('#loginForm > div > div:nth-child(1) > div > label > input').send_keys(username)
