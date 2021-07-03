@@ -50,9 +50,9 @@ driver.implicitly_wait(10)
 time.sleep(1)
 
 #メアドと、パスワードを入力
-driver.find_element_by_name('username').send_keys(username)
+driver.find_element_by_css_selector('#loginForm > div > div:nth-child(1) > div > label > input').send_keys(username)
 time.sleep(1)
-driver.find_element_by_name('password').send_keys(password)
+driver.find_element_by_css_selector('#loginForm > div > div:nth-child(2) > div > label > input').send_keys(password)
 time.sleep(1)
 
 #ログインボタンを押す
