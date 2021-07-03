@@ -11,10 +11,6 @@ import random
 import chromedriver_binary
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 import os
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.common.exceptions import TimeoutException
 
 #Macの場合、次を追加
 
@@ -32,15 +28,12 @@ print(tagName)
 #いいね数を設定
 likedMax = 200
 
-chrome_options = Options()
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--dns-prefetch-disable')
-driver = webdriver.Chrome(options=chrome_options)
-driver.set_window_size('1200', '1000')
-# webdriver.Chrome(DRIVER)
-
-wait = WebDriverWait(driver, 20)
-wait.until(EC.presence_of_all_elements_located)
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
 #ブラウザに接続
 #Windowsの場合：chromedriver.exeの格納先を指定する
@@ -52,17 +45,14 @@ time.sleep(5)
 
 #インスタのURLにアクセス
 driver.get("https://www.instagram.com/accounts/login/")
+print(driver.page_source)
 driver.implicitly_wait(10)
 time.sleep(1)
 
 #メアドと、パスワードを入力
-usernames = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[name='username']")))
-usernames.clear()
-usernames.send_keys(username)
+driver.find_element_by_name('username').send_keys(username)
 time.sleep(1)
-passwords = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[name='password']")))
-passwords.clear()
-passwords.send_keys(password)
+driver.find_element_by_name('password').send_keys(password)
 time.sleep(1)
 
 #ログインボタンを押す
