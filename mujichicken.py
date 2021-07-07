@@ -28,37 +28,30 @@ print(tagName)
 #いいね数を設定
 likedMax = 200
 
-chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_argument("--no-sandbox")
-driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-
+op = webdriver.ChromeOptions()
+op.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+op.add_argument("--headless")
+op.add_argument("--no-sandbox")
+op.add_argument("--disable-dev-sh-usage")
+    
 #ブラウザに接続
-#Windowsの場合：chromedriver.exeの格納先を指定する
-#例　r"C:\Users\username\Python\chromedriver.exe"
+driver = webdriver.Chrome(executable_path= os.environ.get("CHROMEDRIVE_PATH"), chrome_options=op)
 driver.implicitly_wait(10)
 time.sleep(5)
-#Macの場合：次の記載とする
- #driver = webdriver.Chrome()
 
 #インスタのURLにアクセス
 driver.get("https://www.instagram.com/accounts/login/")
-print(driver.page_source)
 driver.implicitly_wait(10)
-time.sleep(20)
+time.sleep(3)
 
-#メアドと、パスワードを入力
-driver.find_element_by_css_selector('#loginForm > div > div:nth-child(1) > div > label > input').send_keys(username)
+
+driver.find_element_by_xpath('//*[@id="loginForm"]/div/div[1]/div/label/input').send_key(username)
 time.sleep(1)
-driver.find_element_by_css_selector('#loginForm > div > div:nth-child(2) > div > label > input').send_keys(password)
+driver.find_element_by_xpath('//*[@id="loginForm"]/div/div[2]/div/label/input').send_key(password)
 time.sleep(1)
 
 #ログインボタンを押す
 driver.find_element_by_xpath('//*[@id="loginForm"]/div/div[3]').click()
-time.sleep(3)
-print(now_time()+'instagramにログインしました')
 time.sleep(1)
 
 #タグ検索
