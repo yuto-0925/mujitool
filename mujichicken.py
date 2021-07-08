@@ -28,14 +28,13 @@ print(tagName)
 #いいね数を設定
 likedMax = 200
 
-op = webdriver.ChromeOptions()
-op.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-op.add_argument("--headless")
-op.add_argument("--no-sandbox")
-op.add_argument("--disable-dev-sh-usage")
+options = Options()
+options.binary_location = '/app/.apt/usr/bin/google-chrome'
+options.add_argument("--headless")
+options.add_argument("--disable-gpu")
     
 #ブラウザに接続
-driver = webdriver.Chrome(executable_path= os.environ.get("CHROMEDRIVE_PATH"), chrome_options=op)
+driver = webdriver.Chrome(chrome_options=options)
 driver.implicitly_wait(10)
 time.sleep(5)
 
